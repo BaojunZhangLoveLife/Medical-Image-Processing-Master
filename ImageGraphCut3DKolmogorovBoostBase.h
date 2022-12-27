@@ -22,8 +22,6 @@ namespace itk{
 		typedef SmartPointer<Self> Pointer;
 		typedef SmartPointer<const Self> ConstPointer;
 
-		itkTypeMacro(ImageGraphCut3DKolmogorovBoostBase, ImageGraphCut3DFilter);
-
 		typedef typename SuperClass::InputImageType InputImageType;
 		typedef typename SuperClass::ForegroundImageType ForegroundImageType;
 		typedef typename SuperClass::BackgroundImageType BackgroundImageType;
@@ -56,7 +54,6 @@ namespace itk{
 
 	private:
         ImageGraphCut3DKolmogorovBoostBase(const Self &); // intentionally not implemented
-		void operator=(const Self &); // intentionally not implemented
 	};
 } // namespace itk
 
