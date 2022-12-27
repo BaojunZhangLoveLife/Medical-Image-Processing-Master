@@ -15,13 +15,7 @@
 * It can operate on a 3D image with one component per dimension (i.e.
 * grayscale).
 */
-GraphCutAlgorithm::GraphCutAlgorithm()
-{
-}
 
-GraphCutAlgorithm::~GraphCutAlgorithm()
-{
-}
 void GraphCutAlgorithm::GraphCut(std::string fileName, std::string fgFileName, std::string bgFileName, std::string outFileName) 
 {
 	// Parse arguments

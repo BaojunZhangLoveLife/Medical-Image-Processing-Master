@@ -21,8 +21,6 @@ namespace GraphCut
 class GraphCutAlgorithm
 {
 public:
-	GraphCutAlgorithm();
-	~GraphCutAlgorithm();
 	void GraphCut(std::string fileName, std::string fgFileName, std::string bgFileName, std::string outFileName);
 };
 #endif //__GraphCut_h__
