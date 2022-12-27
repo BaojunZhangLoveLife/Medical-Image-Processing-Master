@@ -2,9 +2,6 @@
 class ItkSegmentation
 {
 	public:
-		ItkSegmentation();
-		~ItkSegmentation();
-
 		//区域生长
 		void RegionGrowing(std::string srcPath, std::string dstPath);
 		//填孔操作

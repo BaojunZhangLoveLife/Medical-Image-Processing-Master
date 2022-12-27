@@ -13,14 +13,7 @@
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkMultiplyImageFilter.h"
 #include "Globals.h"
-ItkSegmentation::ItkSegmentation()
-{
 
-}
-
-ItkSegmentation::~ItkSegmentation()
-{
-}
 // Region Growing
 void ItkSegmentation::RegionGrowing(std::string srcPath, std::string dstPath) {
 	using InternalImageType = FloatImage;
