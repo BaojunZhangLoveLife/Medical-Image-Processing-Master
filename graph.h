@@ -353,7 +353,7 @@ private:
 // Implementation - inline functions //
 ///////////////////////////////////////
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline typename Graph<captype,tcaptype,flowtype>::node_id Graph<captype,tcaptype,flowtype>::add_node(int num)
+inline typename Graph<captype,tcaptype,flowtype>::node_id Graph<captype,tcaptype,flowtype>::add_node(int num)
 {
 	assert(num > 0);
 
@@ -368,7 +368,7 @@ template <typename captype, typename tcaptype, typename flowtype>
 }
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline void Graph<captype,tcaptype,flowtype>::add_tweights(node_id i, tcaptype cap_source, tcaptype cap_sink)
+inline void Graph<captype,tcaptype,flowtype>::add_tweights(node_id i, tcaptype cap_source, tcaptype cap_sink)
 {
 	assert(i >= 0 && i < node_num);
 
@@ -380,7 +380,7 @@ template <typename captype, typename tcaptype, typename flowtype>
 }
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline void Graph<captype,tcaptype,flowtype>::add_edge(node_id _i, node_id _j, captype cap, captype rev_cap)
+inline void Graph<captype,tcaptype,flowtype>::add_edge(node_id _i, node_id _j, captype cap, captype rev_cap)
 {
 	assert(_i >= 0 && _i < node_num);
 	assert(_j >= 0 && _j < node_num);
@@ -409,34 +409,34 @@ template <typename captype, typename tcaptype, typename flowtype>
 }
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline typename Graph<captype,tcaptype,flowtype>::arc* Graph<captype,tcaptype,flowtype>::get_first_arc()
+inline typename Graph<captype,tcaptype,flowtype>::arc* Graph<captype,tcaptype,flowtype>::get_first_arc()
 {
 	return arcs;
 }
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline tcaptype Graph<captype,tcaptype,flowtype>::get_trcap(node_id i)
+inline tcaptype Graph<captype,tcaptype,flowtype>::get_trcap(node_id i)
 {
 	assert(i>=0 && i<node_num);
 	return nodes[i].tr_cap;
 }
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline captype Graph<captype,tcaptype,flowtype>::get_rcap(arc* a)
+inline captype Graph<captype,tcaptype,flowtype>::get_rcap(arc* a)
 {
 	assert(a >= arcs && a < arc_last);
 	return a->r_cap;
 }
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline void Graph<captype,tcaptype,flowtype>::set_trcap(node_id i, tcaptype trcap)
+inline void Graph<captype,tcaptype,flowtype>::set_trcap(node_id i, tcaptype trcap)
 {
 	assert(i>=0 && i<node_num); 
 	nodes[i].tr_cap = trcap;
 }
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline void Graph<captype,tcaptype,flowtype>::set_rcap(arc* a, captype rcap)
+inline void Graph<captype,tcaptype,flowtype>::set_rcap(arc* a, captype rcap)
 {
 	assert(a >= arcs && a < arc_last);
 	a->r_cap = rcap;
@@ -444,7 +444,7 @@ template <typename captype, typename tcaptype, typename flowtype>
 
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline typename Graph<captype,tcaptype,flowtype>::termtype Graph<captype,tcaptype,flowtype>::what_segment(node_id i, termtype default_segm)
+inline typename Graph<captype,tcaptype,flowtype>::termtype Graph<captype,tcaptype,flowtype>::what_segment(node_id i, termtype default_segm)
 {
 	if (nodes[i].parent)
 	{
@@ -457,7 +457,7 @@ template <typename captype, typename tcaptype, typename flowtype>
 }
 
 template <typename captype, typename tcaptype, typename flowtype> 
-	inline void Graph<captype,tcaptype,flowtype>::mark_node(node_id _i)
+inline void Graph<captype,tcaptype,flowtype>::mark_node(node_id _i)
 {
 	node* i = nodes + _i;
 	if (!i->next)
