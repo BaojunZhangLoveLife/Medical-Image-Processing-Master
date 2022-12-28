@@ -65,9 +65,7 @@
 
 #include <assert.h>
 // NOTE: in UNIX you need to use -DNDEBUG preprocessor option to supress assert's!!!
-
-
-
+// 
 // captype: type of edge capacities (excluding t-links)
 // tcaptype: type of t-links (edges between nodes and terminals)
 // flowtype: type of total flow
@@ -276,7 +274,6 @@ private:
 	struct node
 	{
 		arc			*first;		// first outcoming arc
-
 		arc			*parent;	// node's parent
 		node		*next;		// pointer to the next active node
 								//   (or to itself if it is the last node in the list)
@@ -296,7 +293,6 @@ private:
 		node		*head;		// node the arc points to
 		arc			*next;		// next arc with the same originating node
 		arc			*sister;	// reverse arc
-
 		captype		r_cap;		// residual capacity
 	};
 
@@ -317,7 +313,6 @@ private:
 	void	(*error_function)(const char *);	// this function is called if a error occurs,
 										// with a corresponding error message
 										// (or exit(1) is called if it's NULL)
-
 	flowtype			flow;		// total flow
 
 	// reusing trees & list of changed pixels
@@ -357,9 +352,6 @@ private:
 ///////////////////////////////////////
 // Implementation - inline functions //
 ///////////////////////////////////////
-
-
-
 template <typename captype, typename tcaptype, typename flowtype> 
 	inline typename Graph<captype,tcaptype,flowtype>::node_id Graph<captype,tcaptype,flowtype>::add_node(int num)
 {
