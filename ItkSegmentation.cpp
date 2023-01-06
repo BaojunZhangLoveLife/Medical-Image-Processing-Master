@@ -97,17 +97,13 @@ void ItkSegmentation::ModifyPixels(std::string srcPath, std::string dstPath) {
 	ImageRegion region = reader->GetOutput()->GetLargestPossibleRegion();
 	ImageSize size = region.GetSize();
 	ImageIndex idx;
-	for (int iz = 0; iz < size[2]; iz++)
-	{
-		for (int iy = 0; iy < size[1]; iy++)
-		{
-			for (int ix = 0; ix < size[0]; ix++)
-			{
+	for (int iz = 0; iz < size[2]; iz++){
+		for (int iy = 0; iy < size[1]; iy++){
+			for (int ix = 0; ix < size[0]; ix++){
 				idx[0] = ix;
 				idx[1] = iy;
 				idx[2] = iz;
-				if (reader->GetOutput()->GetPixel(idx) == 1)
-				{
+				if (reader->GetOutput()->GetPixel(idx) == 1){
 					dstImage->SetPixel(idx, reader->GetOutput()->GetPixel(idx) + 2);
 				}	
 			}
@@ -148,17 +144,13 @@ void ItkSegmentation::Dice(std::string image1Path, std::string image2Path) {
 	ImageRegion region = mathFilter->GetOutput()->GetLargestPossibleRegion();
 	ImageSize size = region.GetSize();
 	ImageIndex idx;
-	for (int iz = 0; iz < size[2]; iz++)
-	{
-		for (int iy = 0; iy < size[1]; iy++)
-		{
-			for (int ix = 0; ix < size[0]; ix++)
-			{
+	for (int iz = 0; iz < size[2]; iz++){
+		for (int iy = 0; iy < size[1]; iy++){
+			for (int ix = 0; ix < size[0]; ix++){
 				idx[0] = ix;
 				idx[1] = iy;
 				idx[2] = iz;
-				if (mathFilter->GetOutput()->GetPixel(idx) == 1)
-				{
+				if (mathFilter->GetOutput()->GetPixel(idx) == 1){
 					mixedCount++;
 				}
 			}
@@ -168,17 +160,13 @@ void ItkSegmentation::Dice(std::string image1Path, std::string image2Path) {
 
 	 region = image1PathReader->GetOutput()->GetLargestPossibleRegion();
 	 size = region.GetSize();
-	for (int iz = 0; iz < size[2]; iz++)
-	{
-		for (int iy = 0; iy < size[1]; iy++)
-		{
-			for (int ix = 0; ix < size[0]; ix++)
-			{
+	for (int iz = 0; iz < size[2]; iz++){
+		for (int iy = 0; iy < size[1]; iy++){
+			for (int ix = 0; ix < size[0]; ix++){
 				idx[0] = ix;
 				idx[1] = iy;
 				idx[2] = iz;
-				if (image1PathReader->GetOutput()->GetPixel(idx) == 1)
-				{
+				if (image1PathReader->GetOutput()->GetPixel(idx) == 1){
 					image1Count++;
 				}
 			}
@@ -188,17 +176,13 @@ void ItkSegmentation::Dice(std::string image1Path, std::string image2Path) {
 
 	region = image2PathReader->GetOutput()->GetLargestPossibleRegion();
 	size = region.GetSize();
-	for (int iz = 0; iz < size[2]; iz++)
-	{
-		for (int iy = 0; iy < size[1]; iy++)
-		{
-			for (int ix = 0; ix < size[0]; ix++)
-			{
+	for (int iz = 0; iz < size[2]; iz++){
+		for (int iy = 0; iy < size[1]; iy++){
+			for (int ix = 0; ix < size[0]; ix++){
 				idx[0] = ix;
 				idx[1] = iy;
 				idx[2] = iz;
-				if (image2PathReader->GetOutput()->GetPixel(idx) == 1)
-				{
+				if (image2PathReader->GetOutput()->GetPixel(idx) == 1){
 					image2Count++;
 				}
 			}
@@ -210,16 +194,14 @@ void ItkSegmentation::Dice(std::string image1Path, std::string image2Path) {
 
 	std::cout << "Dice系数 = " << dice << std::endl;
 }
-void ItkSegmentation::mathAddFilter()
-{
+void ItkSegmentation::mathAddFilter(){
 	std::string src = "";
 	std::vector<std::string> mFileVec;
 
 	GetRootPath(src, mFileVec);
 
 	std::string dst;	//标注组合后的文件名
-	for (int i = 0; i < mFileVec.size(); i++)
-	{
+	for (int i = 0; i < mFileVec.size(); i++){
 		auto maskReader0 = ReaderType::New();
 		auto maskReader1 = ReaderType::New();
 		auto writer = WriterType::New();
@@ -238,12 +220,9 @@ void ItkSegmentation::mathAddFilter()
 		newImage->Graft(maskReader0->GetOutput());
 		ImageSize size = newImage->GetLargestPossibleRegion().GetSize();
 		ImageIndex idx;
-		for (int iz = 0; iz < size[2]; iz++)
-		{
-			for (int iy = 0; iy < size[1]; iy++)
-			{
-				for (int ix = 0; ix < size[0]; ix++)
-				{
+		for (int iz = 0; iz < size[2]; iz++){
+			for (int iy = 0; iy < size[1]; iy++){
+				for (int ix = 0; ix < size[0]; ix++){
 					idx[0] = ix;
 					idx[1] = iy;
 					idx[2] = iz;
@@ -255,8 +234,7 @@ void ItkSegmentation::mathAddFilter()
 		writer->SetInput(newImage);
 		writer->Update();
 
-		for (int i = 0; i < mFileVec1.size(); i++)
-		{
+		for (int i = 0; i < mFileVec1.size(); i++){
 			std::cout << mFileVec1[i] << std::endl;
 
 			maskReader0 = ReaderType::New();
@@ -279,8 +257,7 @@ void ItkSegmentation::mathAddFilter()
 	}
 }
 //对称操作
-void ItkSegmentation::SymmetricalOperation(std::string src, std::string dst)
-{
+void ItkSegmentation::SymmetricalOperation(std::string src, std::string dst){
 	auto reader1 = ReaderType::New();
 	reader1->SetFileName(src);
 	reader1->Update();
@@ -293,12 +270,9 @@ void ItkSegmentation::SymmetricalOperation(std::string src, std::string dst)
 	ImageIndex idx1;
 
 
-	for (int iz = 0; iz < size1[2]; iz++)
-	{
-		for (int iy = 0; iy < size1[1]; iy++)
-		{
-			for (int ix = 0; ix < size1[0]; ix++)
-			{
+	for (int iz = 0; iz < size1[2]; iz++){
+		for (int iy = 0; iy < size1[1]; iy++){
+			for (int ix = 0; ix < size1[0]; ix++){
 				idx1[0] = ix;
 				idx1[1] = iy;
 				idx1[2] = iz;
@@ -312,8 +286,6 @@ void ItkSegmentation::SymmetricalOperation(std::string src, std::string dst)
 	writer1->SetFileName(dst);
 	writer1->SetInput(newImage1);
 	writer1->Update();
-
-
 
 
 	auto reader2 = ReaderType::New();
@@ -332,12 +304,9 @@ void ItkSegmentation::SymmetricalOperation(std::string src, std::string dst)
 	ImageIndex idx2;
 	ImageIndex idx3;
 
-	for (int iz = 0; iz < size2[2]; iz++)
-	{
-		for (int iy = 0; iy < size2[1]; iy++)
-		{
-			for (int ix = 0; ix < size2[0]; ix++)
-			{
+	for (int iz = 0; iz < size2[2]; iz++){
+		for (int iy = 0; iy < size2[1]; iy++){
+			for (int ix = 0; ix < size2[0]; ix++){
 				idx2[0] = ix;
 				idx2[1] = iy;
 				idx2[2] = iz;
@@ -346,15 +315,12 @@ void ItkSegmentation::SymmetricalOperation(std::string src, std::string dst)
 				idx3[1] = iy;
 				idx3[2] = iz;
 
-
 				newImage2->SetPixel(idx2, reader3->GetOutput()->GetPixel(idx3));
 			}
-
 		}
 	}
 	auto writer2 = WriterType::New();
 	writer2->SetFileName(dst);
 	writer2->SetInput(newImage2);
 	writer2->Update();
-
 }
