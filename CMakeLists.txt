@@ -8,13 +8,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Enable C++17
 set(CMAKE_CXX_STANDARD 17)
 
-# Open3D
-find_package(Open3D)
-include_directories(${Open3D_INCLUDE_DIRS})
-link_directories(${Open3D_LIBRARY_DIRS})
-add_definitions(${Open3D_DEFINITIONS})
-
-
 # VMTK
 if(NOT VMTK_ROOT)
 	set(VMTK_ROOT "" CACHE PATH "VMTK root path")
@@ -38,21 +31,6 @@ else(ITK_FOUND)
 	message(FATAL_ERROR "ITK not found. Please set ITK_DIR.")
 endif(ITK_FOUND)
 set(ITK_LIBS ${ITK_LIBRARIES})
-
-# CUDA
-if(NOT CUDA_ROOT)
-        set(CUDA_ROOT "" CACHE PATH "cuda root path")
-endif()
-if(CUDA_ROOT)
-	set(CUDA_LIB_DIR ${CUDA_ROOT}/lib/)
-    set(CUDA_BIN_DIR ${CUDA_ROOT}/bin/)
-    file(GLOB CUDA_LIB_FILES ${CUDA_ROOT}/lib/*.lib)
-    file(GLOB CUDA_BIN_FILES ${CUDA_ROOT}/bin/*.dll)
-    set(CUDA_INC_DIR ${CUDA_ROOT}/include/)
-else()
-    message(FATAL_ERROR "can not generate without cuda")
-endif(CUDA_ROOT)
-include_directories(${CUDA_INC_DIR})
 
 # pcl
 find_package(PCL 1.11 REQUIRED)
@@ -84,11 +62,9 @@ source_group("Shader" FILES ${SHADER_FILES})
 add_executable(${PROJECT_NAME} ${SRC_FILES} ${HEAD_FILES} ${QRC_FILES} ${WRAP_FILES} ${SHADER_FILES})
 
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::OpenGLExtensions)
-target_link_libraries(${PROJECT_NAME} ${Open3D_LIBRARIES})
 target_link_libraries (${PROJECT_NAME} ${PCL_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} ${ITK_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} ${VMTK_LIBRARIES})
-target_link_libraries (${PROJECT_NAME} ${CUDA_LIB_FILES})
 
 # generate libraies
 #add_library(DataProcessing DataProcessing.cpp)
