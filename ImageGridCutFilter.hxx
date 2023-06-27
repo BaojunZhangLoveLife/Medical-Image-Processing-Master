@@ -128,15 +128,16 @@ namespace itk {
             progress.CompletedPixel();
         }
 
-        SetCapacities(capacities[0].data(),
-                             capacities[1].data(),
-                             capacities[2].data(),
-                             capacities[3].data(),
-                             capacities[4].data(),
-                             capacities[5].data(),
-                             capacities[6].data(),
-                             capacities[7].data());
-    }
+        SetCapacities(
+            capacities[0].data(),
+            capacities[1].data(),
+            capacities[2].data(),
+            capacities[3].data(),
+            capacities[4].data(),
+            capacities[5].data(),
+            capacities[6].data(),
+            capacities[7].data());
+}
 
     template<typename TImage, typename TForeground, typename TBackground, typename TOutput>
     void ImageGridCutFilter <TImage, TForeground, TBackground, TOutput>

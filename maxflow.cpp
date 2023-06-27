@@ -101,7 +101,6 @@ template <typename captype, typename tcaptype, typename flowtype>
 }
 
 /***********************************************************************/
-
 template <typename captype, typename tcaptype, typename flowtype> 
 	inline void Graph<captype,tcaptype,flowtype>::add_to_changed_list(node *i)
 {
@@ -112,9 +111,7 @@ template <typename captype, typename tcaptype, typename flowtype>
 		i->is_in_changed_list = true;
 	}
 }
-
 /***********************************************************************/
-
 template <typename captype, typename tcaptype, typename flowtype> void Graph<captype,tcaptype,flowtype>::maxflow_init()
 {
 	node *i;
